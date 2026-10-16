@@ -54,8 +54,8 @@
     <div class="form-grid">
       <label>Nombre y apellido del cliente<input id="client" required placeholder="Ej.: Ana Gómez"></label>
       <label>Teléfono (opcional)<input id="phone" inputmode="tel" placeholder="0981..."></label>
-      <label>Departamento<input id="department" required placeholder="Ej.: Central"></label>
-      <label>Distrito<input id="district" required placeholder="Ej.: Fernando de la Mora"></label>
+      <label>Departamento<select id="department" required><option value="">Cargando departamentos…</option></select></label>
+      <label>Distrito<select id="district" required disabled><option value="">Primero elegí un departamento</option></select></label>
       <label>Barrio<input id="neighborhood" placeholder="Ej.: Centro"></label>
       <label>Tipo de trabajo<select id="workType" required><option value="">Seleccionar</option><option>Mensura</option><option>Deslinde</option><option>Replanteo</option><option>Topografía</option><option>Nivelación</option><option>Otro</option></select></label>
       <label>Operador responsable<select id="operator" required></select></label>
