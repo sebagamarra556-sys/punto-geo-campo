@@ -3,4 +3,8 @@
 .attachment-preview{margin:-5px 0 16px;color:var(--muted);font-size:12px}
 .attachment-detail{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--paper);border-radius:9px;padding:10px}
 .mini{padding:7px 10px;font-size:12px}
-
+.operator-info{flex:1}
+.danger,.danger-outline{font:inherit;border-radius:10px;padding:10px 13px;font-weight:800;cursor:pointer}
+.danger{background:#b42318;color:#fff;border:0}
+.danger-outline{background:#fff;color:#b42318;border:1px solid #e6b4b0;padding:7px 10px;font-size:12px}
+.danger-outline:disabled{opacity:.45;cursor:not-allowed}
