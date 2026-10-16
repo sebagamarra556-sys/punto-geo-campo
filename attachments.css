@@ -1,0 +1,6 @@
+.file-picker{border:1px dashed var(--blue);color:var(--blue);padding:12px;border-radius:10px;text-align:center}
+.file-picker input{display:none}
+.attachment-preview{margin:-5px 0 16px;color:var(--muted);font-size:12px}
+.attachment-detail{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--paper);border-radius:9px;padding:10px}
+.mini{padding:7px 10px;font-size:12px}
+
