@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="punto-geo-logo.jpg">
-  <link rel="stylesheet" href="styles.css"><style>.auth-button{padding:8px 10px;font-size:12px;margin-right:5px}.form-error{color:#b42318;font-size:13px;min-height:16px;margin:0}</style>
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="attachments.css"><style>.auth-button{padding:8px 10px;font-size:12px;margin-right:5px}.form-error{color:#b42318;font-size:13px;min-height:16px;margin:0}</style>
   <title>Punto Geo Campo</title>
 </head>
 <body>
@@ -68,6 +68,8 @@
     <div class="field-actions"><button type="button" id="geoBtn" class="secondary">⌖ Registrar ubicación</button><span id="geoText">Sin ubicación registrada</span></div>
     <label class="photo-picker">▣ Agregar foto georreferenciada<input id="photo" type="file" accept="image/*" capture="environment"></label>
     <div id="photoPreview" class="photo-preview"></div>
+    <label class="file-picker">⌁ Adjuntar DXF o documento<input id="attachment" type="file" accept=".dxf,.dwg,.pdf,.doc,.docx,.xls,.xlsx,.csv,.zip,.rar,text/*,application/pdf,application/zip"></label>
+    <p id="attachmentPreview" class="attachment-preview">Sin documento adjunto</p>
     <div class="modal-actions"><button type="button" class="secondary" data-close="jobDialog">Cancelar</button><button class="primary" value="save">Guardar trabajo</button></div>
   </form></dialog>
 
@@ -77,4 +79,3 @@
   <script type="module" src="firebase.js"></script><script src="app.js"></script>
 </body>
 </html>
-
