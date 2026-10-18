@@ -15,11 +15,13 @@ async function getAttachment(id){const db=await attachmentDb;return new Promise(
 const attachmentLabel=a=>a?`📎 ${esc(a.name)} (${Math.ceil(a.size/1024)} KB)`:'Sin documento adjunto';
 const save=()=>{localStorage.setItem(KEY,JSON.stringify(state));if(!applyingRemote)window.dispatchEvent(new CustomEvent('puntoGeo:local-change',{detail:{operators:state.operators,jobs:state.jobs}}))};
 const esc=s=>String(s||'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+const normalizeOperators=ops=>(Array.isArray(ops)?ops:[]).filter(Boolean).map((o,i)=>typeof o==='string'?{id:`op-import-${i}`,name:o,phone:''}:{id:o.id||`op-import-${i}`,name:o.name||`Operador ${i+1}`,phone:o.phone||''});
 function status(v){return v==='en_campo'?'En campo':v==='finalizado'?'Finalizado':'Pendiente'}
 function balance(j){return Math.max(0,Number(j.amount||0)-Number(j.paid||0))}
 function dateText(d){return d?new Intl.DateTimeFormat('es-PY',{day:'2-digit',month:'short',year:'numeric'}).format(new Date(`${d}T12:00:00`)):'Sin fecha'}
 function jobCard(j){return `<article class="job-card" data-job="${j.id}"><div class="job-top"><div><p>${esc(j.workType||'Trabajo')}</p><h3>${esc(j.client)}</h3><p>${esc([j.district,j.neighborhood].filter(Boolean).join(' · ')||j.department||'Sin ubicación')}</p></div><span class="badge ${j.status}">${status(j.status)}</span></div><div class="job-bottom"><span>📅 ${dateText(j.date)}</span><span class="balance">Saldo ${money(balance(j))}</span></div></article>`}
 function render(){
+ state.operators=normalizeOperators(state.operators);if(!state.operators.length)state.operators=[{id:'op-1',name:'Administrador',phone:''}];
  const jobs=[...state.jobs].sort((a,b)=>(a.date||'9999').localeCompare(b.date||'9999'));
  const total=jobs.reduce((s,j)=>s+Number(j.amount||0),0),paid=jobs.reduce((s,j)=>s+Number(j.paid||0),0),pending=total-paid;
  $('#summary').innerHTML=`<div class="summary-card yellow"><span>Trabajos activos</span><strong>${jobs.filter(j=>j.status!=='finalizado').length}</strong></div><div class="summary-card"><span>Por cobrar</span><strong>${money(pending)}</strong></div><div class="summary-card"><span>Cobrado</span><strong>${money(paid)}</strong></div><div class="summary-card"><span>Finalizados</span><strong>${jobs.filter(j=>j.status==='finalizado').length}</strong></div>`;
@@ -50,4 +52,4 @@ $('#loginForm').onsubmit=async e=>{e.preventDefault();$('#loginError').textConte
 window.puntoGeoApplyRemote=remote=>{applyingRemote=true;const photos=Object.fromEntries(state.jobs.map(j=>[j.id,j.photo]));state.operators=remote.operators||state.operators;state.jobs=(remote.jobs||[]).map(j=>({...j,photo:photos[j.id]||j.photo||''}));localStorage.setItem(KEY,JSON.stringify(state));applyingRemote=false;render()};
 window.addEventListener('puntoGeo:auth',e=>{$('#loginBtn').classList.toggle('hidden',!!e.detail);$('#logoutBtn').classList.toggle('hidden',!e.detail);$('#syncStatus').textContent=e.detail?'Equipo sincronizado':'Iniciá sesión para sincronizar el equipo'});window.addEventListener('puntoGeo:sync-error',()=>{$('#syncStatus').textContent='No se pudo sincronizar. Revisa la conexión o inicia sesión.'});
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;$('#installBtn').classList.remove('hidden')});$('#installBtn').onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;$('#installBtn').classList.add('hidden')}};
-if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=configuracion-v3');cargarGeografia();render();
+if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=configuracion-v4');cargarGeografia();render();
