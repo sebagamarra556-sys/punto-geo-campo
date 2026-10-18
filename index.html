@@ -42,10 +42,19 @@
       <p class="note">Todos los operadores verán los mismos trabajos al activar la sincronización Firebase.</p>
       <div id="operatorsList" class="operator-list"></div>
     </section>
+
+    <section id="settings" class="view">
+      <div class="page-heading"><div><p>Administración</p><h1>Configuración</h1></div></div>
+      <p class="note">Las acciones de esta pantalla modifican los datos del equipo. Siempre se pedirá confirmación antes de eliminar.</p>
+      <div class="section-title"><h2>Administrar operadores</h2></div>
+      <div id="configOperators" class="operator-list"></div>
+      <div class="section-title"><h2>Eliminar trabajos</h2></div>
+      <div id="configJobs" class="job-list"></div>
+    </section>
   </main>
 
   <nav class="bottom-nav" aria-label="Navegación principal">
-    <button class="nav-item selected" data-nav="dashboard"><span>⌂</span>Inicio</button><button class="nav-item" data-nav="jobs"><span>▣</span>Trabajos</button><button class="nav-item" data-nav="money"><span>₲</span>Cobros</button><button class="nav-item" data-nav="team"><span>♙</span>Equipo</button>
+    <button class="nav-item selected" data-nav="dashboard"><span>⌂</span>Inicio</button><button class="nav-item" data-nav="jobs"><span>▣</span>Trabajos</button><button class="nav-item" data-nav="money"><span>₲</span>Cobros</button><button class="nav-item" data-nav="team"><span>♙</span>Equipo</button><button class="nav-item" data-nav="settings"><span>⚙</span>Config.</button>
   </nav>
 
   <dialog id="jobDialog" class="modal"><form id="jobForm" method="dialog">
