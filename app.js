@@ -50,4 +50,4 @@ $('#loginForm').onsubmit=async e=>{e.preventDefault();$('#loginError').textConte
 window.puntoGeoApplyRemote=remote=>{applyingRemote=true;const photos=Object.fromEntries(state.jobs.map(j=>[j.id,j.photo]));state.operators=remote.operators||state.operators;state.jobs=(remote.jobs||[]).map(j=>({...j,photo:photos[j.id]||j.photo||''}));localStorage.setItem(KEY,JSON.stringify(state));applyingRemote=false;render()};
 window.addEventListener('puntoGeo:auth',e=>{$('#loginBtn').textContent=e.detail?'Conectado':'Acceder';$('#syncStatus').textContent=e.detail?'Equipo sincronizado':'Ingresa para sincronizar equipo'});
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;$('#installBtn').classList.remove('hidden')});$('#installBtn').onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;$('#installBtn').classList.add('hidden')}};
-if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');cargarGeografia();render();
+if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=configuracion-v2');cargarGeografia();render();
