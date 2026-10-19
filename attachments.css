@@ -11,3 +11,10 @@
 .config-job{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .config-job h3{margin:3px 0 5px}
 .config-job p{margin:0;color:var(--muted);font-size:13px}
+.location-card,.location-result{background:#fff;border:1px solid var(--line);border-radius:15px;padding:16px}
+.location-card{margin:16px 0;display:grid;gap:4px}
+.location-result{color:var(--muted);line-height:1.6}
+.location-result strong{color:var(--ink)}
+.map-link{display:inline-flex;margin-top:10px;text-decoration:none}
+.bottom-nav{overflow-x:auto;justify-content:flex-start}
+.nav-item{flex:1;min-width:60px}
