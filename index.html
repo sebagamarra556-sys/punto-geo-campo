@@ -6,9 +6,12 @@
   <meta name="theme-color" content="#073b64">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Punto Geo">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="apple-touch-icon" href="punto-geo-logo.jpg">
-  <link rel="stylesheet" href="styles.css?v=topografia-v2"><link rel="stylesheet" href="attachments.css?v=agenda-v1"><style>.auth-button{padding:8px 10px;font-size:12px;margin-right:5px}.form-error{color:#b42318;font-size:13px;min-height:16px;margin:0}</style>
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png?v=ios-v1">
+  <link rel="stylesheet" href="styles.css?v=topografia-v2"><link rel="stylesheet" href="attachments.css?v=agenda-v1"><style>.auth-button{padding:8px 10px;font-size:12px;margin-right:5px}.form-error{color:#b42318;font-size:13px;min-height:16px;margin:0}.ios-install-hint{margin:0 0 16px;padding:11px 12px;border:1px solid rgba(7,59,100,.14);border-radius:12px;background:rgba(255,255,255,.9);color:var(--navy);font-size:13px;line-height:1.45;box-shadow:0 5px 16px rgba(7,59,100,.045)}.ios-install-hint strong{color:var(--blue)}@supports (padding:env(safe-area-inset-top)){body{padding-bottom:calc(80px + env(safe-area-inset-bottom))}.topbar{height:calc(78px + env(safe-area-inset-top));padding:calc(10px + env(safe-area-inset-top)) 18px 10px}.bottom-nav{padding-bottom:env(safe-area-inset-bottom)}}</style>
   <title>Punto Geo Campo</title>
 </head>
 <body>
@@ -19,6 +22,7 @@
   <main class="app-shell">
     <section id="dashboard" class="view active">
       <div class="welcome"><p>Gestión de campo</p><h1>Buenos trabajos, mejor control.</h1><span id="syncStatus" class="status-chip">Guardado en este dispositivo</span></div>
+      <p id="iosInstallHint" class="ios-install-hint hidden"><strong>Instalá Punto Geo en este iPhone:</strong> en Safari tocá <b>Compartir</b> y elegí <b>Agregar a inicio</b>.</p>
       <div class="summary-grid" id="summary"></div>
       <div class="section-title"><h2>Próximos trabajos</h2><button class="text-button" data-nav="jobs">Ver todos</button></div>
       <div id="upcomingJobs" class="job-list"></div>
