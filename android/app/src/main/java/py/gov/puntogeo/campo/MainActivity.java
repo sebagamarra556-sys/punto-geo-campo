@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
             }
         });
         setContentView(web);
-        web.loadUrl("https://sebagamarra556-sys.github.io/punto-geo-campo/?v=menu-v1");
+        web.loadUrl("https://sebagamarra556-sys.github.io/punto-geo-campo/?v=agenda-v1");
     }
 
     @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -50,3 +50,4 @@ public class MainActivity extends Activity {
         fileCallback = null;
     }
 }
+
