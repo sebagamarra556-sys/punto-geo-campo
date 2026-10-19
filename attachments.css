@@ -18,3 +18,6 @@
 .map-link{display:inline-flex;margin-top:10px;text-decoration:none}
 .bottom-nav{overflow-x:auto;justify-content:flex-start}
 .nav-item{flex:1;min-width:60px}
+.consultation-list{display:grid;gap:12px}
+.consultation-card{display:flex;align-items:center;gap:13px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:15px;text-decoration:none;color:var(--ink)}
+.consultation-card>span{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--yellow);font-size:21px;font-weight:800}.consultation-card div{flex:1}.consultation-card strong{display:block}.consultation-card p{margin:4px 0 0;color:var(--muted);font-size:13px}.consultation-card>b{color:var(--blue);font-size:19px}
