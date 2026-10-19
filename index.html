@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="punto-geo-logo.jpg">
-  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="attachments.css?v=configuracion-v4"><style>.auth-button{padding:8px 10px;font-size:12px;margin-right:5px}.form-error{color:#b42318;font-size:13px;min-height:16px;margin:0}</style>
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="attachments.css?v=localizacion-v1"><style>.auth-button{padding:8px 10px;font-size:12px;margin-right:5px}.form-error{color:#b42318;font-size:13px;min-height:16px;margin:0}</style>
   <title>Punto Geo Campo</title>
 </head>
 <body>
@@ -43,6 +43,17 @@
       <div id="operatorsList" class="operator-list"></div>
     </section>
 
+    <section id="localization" class="view">
+      <div class="page-heading"><div><p>Coordenadas de campo</p><h1>Localización</h1></div></div>
+      <p class="note">Sistema configurado: <strong>WGS 1984 / UTM Zone 21S</strong>. Ingresá Norte (N) y Este (E) en metros.</p>
+      <form id="utmForm" class="location-card">
+        <label>Coordenada Norte (N)<input id="utmNorth" inputmode="decimal" required placeholder="Ej.: 7200000.00"></label>
+        <label>Coordenada Este (E)<input id="utmEast" inputmode="decimal" required placeholder="Ej.: 450000.00"></label>
+        <button class="primary">Ubicar en Google Maps</button>
+      </form>
+      <div id="utmResult" class="location-result" aria-live="polite">Cargá las coordenadas para obtener la ubicación.</div>
+    </section>
+
     <section id="settings" class="view">
       <div class="page-heading"><div><p>Administración</p><h1>Configuración</h1></div></div>
       <p class="note">Las acciones de esta pantalla modifican los datos del equipo. Siempre se pedirá confirmación antes de eliminar.</p>
@@ -54,7 +65,7 @@
   </main>
 
   <nav class="bottom-nav" aria-label="Navegación principal">
-    <button class="nav-item selected" data-nav="dashboard"><span>⌂</span>Inicio</button><button class="nav-item" data-nav="jobs"><span>▣</span>Trabajos</button><button class="nav-item" data-nav="money"><span>₲</span>Cobros</button><button class="nav-item" data-nav="team"><span>♙</span>Equipo</button><button class="nav-item" data-nav="settings"><span>⚙</span>Config.</button>
+    <button class="nav-item selected" data-nav="dashboard"><span>⌂</span>Inicio</button><button class="nav-item" data-nav="jobs"><span>▣</span>Trabajos</button><button class="nav-item" data-nav="money"><span>₲</span>Cobros</button><button class="nav-item" data-nav="team"><span>♙</span>Equipo</button><button class="nav-item" data-nav="localization"><span>⌖</span>Ubicar</button><button class="nav-item" data-nav="settings"><span>⚙</span>Config.</button>
   </nav>
 
   <dialog id="jobDialog" class="modal"><form id="jobForm" method="dialog">
@@ -85,6 +96,6 @@
   <dialog id="operatorDialog" class="modal small"><form id="operatorForm" method="dialog"><div class="modal-head"><div><p>Equipo</p><h2>Agregar operador</h2></div><button type="button" class="close" data-close="operatorDialog">×</button></div><label>Nombre del operador<input id="operatorName" required placeholder="Ej.: Carlos Benítez"></label><label>Teléfono (opcional)<input id="operatorPhone" inputmode="tel"></label><div class="modal-actions"><button type="button" class="secondary" data-close="operatorDialog">Cancelar</button><button class="primary">Guardar</button></div></form></dialog>
   <dialog id="loginDialog" class="modal small"><form id="loginForm"><div class="modal-head"><div><p>Acceso seguro</p><h2>Ingresar al equipo</h2></div><button type="button" class="close" data-close="loginDialog">×</button></div><p class="note">Usa el correo y contraseña creados para cada operador.</p><label>Correo<input id="loginEmail" type="email" required autocomplete="email"></label><label>Contraseña<input id="loginPassword" type="password" required autocomplete="current-password"></label><p id="loginError" class="form-error"></p><div class="modal-actions"><button type="button" class="secondary" data-close="loginDialog">Cancelar</button><button class="primary">Ingresar</button></div></form></dialog>
   <dialog id="detailDialog" class="modal"><div id="jobDetail"></div></dialog>
-  <script type="module" src="firebase.js?v=configuracion-v4"></script><script src="geo-paraguay.js?v=configuracion-v4"></script><script src="app.js?v=configuracion-v4"></script>
+  <script type="module" src="firebase.js?v=localizacion-v1"></script><script src="geo-paraguay.js?v=localizacion-v1"></script><script src="app.js?v=localizacion-v1"></script>
 </body>
 </html>
