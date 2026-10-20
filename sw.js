@@ -1,12 +1,12 @@
-const CACHE = 'punto-geo-campo-v22';
+const CACHE = 'punto-geo-campo-v23';
 const FILES = [
   './',
   './index.html',
-  './styles.css?v=topografia-v2',
+  './styles.css?v=pendientes-archivo-v1',
   './attachments.css?v=agenda-v1',
-  './geo-paraguay.js?v=auth-fix-v1',
-  './app.js?v=auth-fix-v1',
-  './firebase.js?v=auth-fix-v1',
+  './geo-paraguay.js?v=pendientes-archivo-v1',
+  './app.js?v=pendientes-archivo-v1',
+  './firebase.js?v=pendientes-archivo-v1',
   './manifest.webmanifest',
   './punto-geo-logo.jpg',
   './icons/apple-touch-icon.png',
@@ -34,4 +34,3 @@ self.addEventListener('fetch', event => {
   }
   event.respondWith(caches.match(event.request).then(response => response || fetch(event.request)));
 });
-

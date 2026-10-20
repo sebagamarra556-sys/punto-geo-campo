@@ -28,9 +28,9 @@ function syncError() {
 
 function localWorkspace() {
   try {
-    return JSON.parse(localStorage.getItem('punto-geo-campo-v1') || '{"operators":[],"jobs":[],"agenda":[]}');
+    return JSON.parse(localStorage.getItem('punto-geo-campo-v1') || '{"operators":[],"jobs":[],"agenda":[],"notes":[],"archives":[]}');
   } catch {
-    return { operators: [], jobs: [], agenda: [] };
+    return { operators: [], jobs: [], agenda: [], notes: [], archives: [] };
   }
 }
 
@@ -40,13 +40,15 @@ function cloudCopy(data) {
     operators: safe.operators || [],
     jobs: (safe.jobs || []).map(({ photo, ...job }) => job),
     agenda: Array.isArray(safe.agenda) ? safe.agenda : [],
+    notes: Array.isArray(safe.notes) ? safe.notes : [],
+    archives: Array.isArray(safe.archives) ? safe.archives : [],
     updatedAt: new Date().toISOString()
   };
 }
 
 function hasRealData(data) {
   const safe = data || {};
-  return (safe.jobs || []).length > 0 || (safe.operators || []).some(operator => operator.id !== 'op-1') || (safe.agenda || []).length > 0;
+  return (safe.jobs || []).length > 0 || (safe.operators || []).some(operator => operator.id !== 'op-1') || (safe.agenda || []).length > 0 || (safe.notes || []).length > 0 || (safe.archives || []).length > 0;
 }
 
 window.puntoGeoLogin = (email, password) => signInWithEmailAndPassword(auth, email, password);
@@ -79,8 +81,13 @@ onAuthStateChanged(
         }
 
         const remote = snapshot.data();
-        if (!Array.isArray(remote.agenda) && (local.agenda || []).length) {
-          setDoc(workspace, { agenda: local.agenda, updatedAt: new Date().toISOString() }, { merge: true }).catch(syncError);
+        const missingCloudData = {};
+        if (!Array.isArray(remote.agenda) && (local.agenda || []).length) missingCloudData.agenda = local.agenda;
+        if (!Array.isArray(remote.notes) && (local.notes || []).length) missingCloudData.notes = local.notes;
+        if (!Array.isArray(remote.archives) && (local.archives || []).length) missingCloudData.archives = local.archives;
+        if (Object.keys(missingCloudData).length) {
+          missingCloudData.updatedAt = new Date().toISOString();
+          setDoc(workspace, missingCloudData, { merge: true }).catch(syncError);
         }
         if (typeof window.puntoGeoApplyRemote === 'function') {
           window.puntoGeoApplyRemote(remote);
@@ -91,4 +98,3 @@ onAuthStateChanged(
   },
   syncError
 );
-
